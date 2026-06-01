@@ -1,0 +1,20 @@
+pipeline{
+  agents any
+      parameters{
+              choice(
+                    name : 'ENV'
+                    choices : ['qa','uat','prod']
+              )
+              choice(
+                    name : 'BROWSER'
+                    choices : ['chrome','firefox']
+              )
+      }
+      stages{
+            stage('Run Smoke suite'){
+                steps{
+                      bat "mvn clean test -Denv=${params.ENV} -Dbrowser=${params.BROWSER} -DbatchExecution.xml"
+                }
+            }
+      }
+}
