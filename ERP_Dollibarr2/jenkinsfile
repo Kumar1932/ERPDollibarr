@@ -23,5 +23,38 @@ pipeline{
                     }           
                 }
             }
+            stage('Publish Extent Report') {
+
+            steps {
+
+                publishHTML([
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'ERP_Dollibarr2/AdvanceReports',
+                    reportFiles: '*.html',
+                    reportName: 'Automation Report'
+                ])
+            }
+        }
       }
+      post {
+        success {
+            emailext(
+            subject: "SUCCESS : ${JOB_NAME} #${BUILD_NUMBER}",
+            body: "Execution Completed",
+            attachmentsPattern: 'ERP_Dollibarr2/AdvanceReports/*.html',
+            to: 'hinduhistory1932@gmail.com'
+          )
+        }
+
+        failure {
+          emailext(
+            subject: "SUCCESS : ${JOB_NAME} #${BUILD_NUMBER}",
+            body: "Execution Completed",
+            attachmentsPattern: 'ERP_Dollibarr2/AdvanceReports/*.html',
+            to: 'hinduhistory1932@gmail.com'
+          )
+        }
+    }
 }
