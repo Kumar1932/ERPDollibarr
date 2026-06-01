@@ -25,22 +25,19 @@ pipeline{
                     }           
                 }
             }
-            stage('Publish Extent Report') {
-
-            steps {
-
-                publishHTML([
-                    allowMissing: true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'ERP_Dollibarr2/AdvanceRepots',
-                    reportFiles: 'ExtentReport.html',
-                    reportName: 'Automation Report'
-                ])
-            }
-        }
       }
       post {
+        always {
+
+        publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'ERP_Dollibarr2/AdvanceRepots',
+            reportFiles: 'ExtentReport.html',
+            reportName: 'Automation Report'
+        ])
+      }
         success {
             emailext(
             subject: "SUCCESS : ${JOB_NAME} #${BUILD_NUMBER}",
