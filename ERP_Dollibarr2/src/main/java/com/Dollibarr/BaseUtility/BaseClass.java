@@ -50,6 +50,7 @@ public class BaseClass
 		String env=System.getProperty("env","qa");
 		FileInputStream fis=new FileInputStream("./configAppData/"+env+".properties");
 		prop = new Properties();
+		
 		prop.load(fis);
 		String BROWSER = prop.getProperty("browser");
 		//String BROWSER = flib.getDataFromPropertiesFile("browser");
