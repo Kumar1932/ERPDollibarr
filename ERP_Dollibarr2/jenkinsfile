@@ -1,13 +1,15 @@
 pipeline{
-  agents any
+  agent any
       parameters{
               choice(
-                    name : 'ENV'
-                    choices : ['qa','uat','prod']
+                    name : 'ENV',
+                    choices : ['qa','uat','prod'],
+                    description: 'Select Environment'
               )
               choice(
-                    name : 'BROWSER'
-                    choices : ['chrome','firefox']
+                    name : 'BROWSER',
+                    choices : ['chrome','firefox'],
+                    description: 'Select Browser'
               )
       }
       stages{
