@@ -18,8 +18,10 @@ pipeline{
       stages{
             stage('Run Smoke suite'){
                 steps{
-                  dir('ERP_Dollibarr2') {
+                    catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                        dir('ERP_Dollibarr2') {
                             bat "mvn clean test -Denv=${params.ENV} -Dbrowser=${params.BROWSER} -DsuiteXmlFile=batchExecution.xml"
+                        }
                     }           
                 }
             }
