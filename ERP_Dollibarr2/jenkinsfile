@@ -42,7 +42,16 @@ pipeline{
         success {
             emailext(
             subject: "SUCCESS : ${JOB_NAME} #${BUILD_NUMBER}",
-            body: "Execution Completed",
+            body: """
+                Execution Completed
+                Job Name    : ${JOB_NAME}
+                Build No    : ${BUILD_NUMBER}
+                Environment : ${params.ENV}
+                Browser     : ${params.BROWSER}
+                
+                Build URL:
+                ${BUILD_URL}
+                """,
             attachmentsPattern: 'ERP_Dollibarr2/AdvanceReports/*.html',
             to: 'hinduhistory1932@gmail.com'
           )
@@ -50,8 +59,17 @@ pipeline{
 
         failure {
           emailext(
-            subject: "SUCCESS : ${JOB_NAME} #${BUILD_NUMBER}",
-            body: "Execution Completed",
+            subject: "FAILURE : ${JOB_NAME} #${BUILD_NUMBER}",
+            body: """
+                Execution Failed
+                Job Name    : ${JOB_NAME}
+                Build No    : ${BUILD_NUMBER}
+                Environment : ${params.ENV}
+                Browser     : ${params.BROWSER}
+                
+                Build URL:
+                ${BUILD_URL}
+                """,
             attachmentsPattern: 'ERP_Dollibarr2/AdvanceReports/*.html',
             to: 'hinduhistory1932@gmail.com'
           )
