@@ -18,7 +18,9 @@ pipeline{
       stages{
             stage('Run Smoke suite'){
                 steps{
-                      bat "mvn clean test -Denv=${params.ENV} -Dbrowser=${params.BROWSER} -DsuiteXmlFile=batchExecution.xml"
+                  dir('ERP_Dollibarr2') {
+                            bat "mvn clean test -Denv=${params.ENV} -Dbrowser=${params.BROWSER} -DsuiteXmlFile=batchExecution.xml"
+                    }           
                 }
             }
       }
