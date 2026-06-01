@@ -26,7 +26,7 @@ public class ListenerImplimentation implements ITestListener,ISuiteListener
 	@Override
 	public void onStart(ISuite suite) {
 		String date = new Date().toString().replaceAll(" ", "_").replaceAll(":", "-");
-		ExtentSparkReporter spark=new ExtentSparkReporter("./AdvanceRepots/report"+" "+date+".html");
+		ExtentSparkReporter spark=new ExtentSparkReporter("./AdvanceRepots/ExtentReport.html");
 		spark.config().setDocumentTitle("ERP Dollibarr Suite Report");
 		spark.config().setReportName("Dollibarr Report");
 		spark.config().setTheme(Theme.DARK);
