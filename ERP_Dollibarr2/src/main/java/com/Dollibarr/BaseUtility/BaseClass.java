@@ -1,6 +1,8 @@
 package com.Dollibarr.BaseUtility;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,7 +36,7 @@ public class BaseClass
 	public DatabaseUtility dlib=new DatabaseUtility();
 	public FileUtility flib=new FileUtility();
 	public ExcelUtility elib=new ExcelUtility();
-	
+	public Properties prop;
 	@BeforeSuite(alwaysRun = true)
 	public void configBS()
 	{
@@ -45,7 +47,11 @@ public class BaseClass
 	@BeforeClass
 	public void configBC() throws IOException
 	{
-		String BROWSER = flib.getDataFromPropertiesFile("browser");
+		String env=System.getProperty("env","qa");
+		FileInputStream fis=new FileInputStream("./configAppData/"+env+".properties");
+		prop.load(fis);
+		String BROWSER = prop.getProperty("browser");
+		//String BROWSER = flib.getDataFromPropertiesFile("browser");
 		if(BROWSER.equals("chrome"))
 		{
 			driver=new ChromeDriver();
@@ -92,9 +98,12 @@ public class BaseClass
 	@BeforeMethod
 	public void configBM() throws IOException
 	{
-		String URL = flib.getDataFromPropertiesFile("url");
-		String USERNAME = flib.getDataFromPropertiesFile("username");
-		String PASSWORD = flib.getDataFromPropertiesFile("password");
+		String URL = prop.getProperty("url");
+		String USERNAME = prop.getProperty("username");
+		String PASSWORD = prop.getProperty("password");
+//		String URL = flib.getDataFromPropertiesFile("url");
+//		String USERNAME = flib.getDataFromPropertiesFile("username");
+//		String PASSWORD = flib.getDataFromPropertiesFile("password");
 		driver.get(URL);
 		wlib.implicitWait(driver);
 		wlib.maximize(driver);
