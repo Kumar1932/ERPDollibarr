@@ -33,7 +33,7 @@ pipeline{
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: 'ERP_Dollibarr2/AdvanceReports',
+                    reportDir: 'ERP_Dollibarr2/AdvanceRepots',
                     reportFiles: '*.html',
                     reportName: 'Automation Report'
                 ])
@@ -54,7 +54,7 @@ pipeline{
                 Build URL:
                 ${BUILD_URL}
                 """,
-            attachmentsPattern: 'ERP_Dollibarr2/AdvanceReports/*.html',
+            attachmentsPattern: 'ERP_Dollibarr2/AdvanceRepots/*.html',
             to: 'hinduhistory1932@gmail.com'
           )
         }
@@ -72,7 +72,7 @@ pipeline{
                 Build URL:
                 ${BUILD_URL}
                 """,
-            attachmentsPattern: 'ERP_Dollibarr2/AdvanceReports/*.html',
+            attachmentsPattern: 'ERP_Dollibarr2/AdvanceRepots/*.html',
             to: 'hinduhistory1932@gmail.com'
           )
         }
