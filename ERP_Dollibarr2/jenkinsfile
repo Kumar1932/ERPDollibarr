@@ -13,7 +13,7 @@ pipeline{
       stages{
             stage('Run Smoke suite'){
                 steps{
-                      bat "mvn clean test -Denv=${params.ENV} -Dbrowser=${params.BROWSER} -DbatchExecution.xml"
+                      bat "mvn clean test -Denv=${params.ENV} -Dbrowser=${params.BROWSER} -DsuiteXmlFile=batchExecution.xml"
                 }
             }
       }
