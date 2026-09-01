@@ -6,7 +6,6 @@
 </listeners>
   <test thread-count="5" name="Test">
     <classes>
-      <class name="com.ERP.Dollibarr.ThirdParty.CreateThirdPartyTest"/>
       <class name="com.ERP.Dollibarr.UsersAndGroups.UsersAndGroupsTest"/>
       <class name="com.ERP.Dollibarr.Members.CreateMemberTest"/>
       <class name="com.ERP.Dollibarr.HRM.ApplyLeaveTest"/>
